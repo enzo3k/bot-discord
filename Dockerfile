@@ -7,16 +7,10 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y \
     gnupg \
     curl \
+    unrar-free \
     && rm -rf /var/lib/apt/lists/*
 
-# Xóa file /usr/bin/unrar nếu tồn tại để tránh xung đột
-RUN rm -f /usr/bin/unrar
-
-# Cài đặt unrar-free
-RUN apt-get update && apt-get install -y unrar-free \
-    && rm -rf /var/lib/apt/lists/*
-
-# Copy mã nguồn vào container
+# Copy mã nguồn và file cấu hình vào container
 COPY . .
 
 # Cài đặt các thư viện Python từ requirements.txt
